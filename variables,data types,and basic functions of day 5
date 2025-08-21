@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Intro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #output {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>JavaScript Basics</h1>
+
+  <button onclick="showMessage()">Click Me</button>
+
+  <div id="output"></div>
+
+  <script>
+    // Variables and Data Types
+    let userName = "Student";
+    let age = 18;
+    let isStudent = true;
+
+    // Basic Function
+    function showMessage() {
+      let message = "Hello " + userName + "! You are " + age + " years old.";
+      if (isStudent) {
+        message += " You're a student.";
+      }
+      document.getElementById("output").innerText = message;
+    }
+  </script>
+
+</body>
+</html>
+
+      
