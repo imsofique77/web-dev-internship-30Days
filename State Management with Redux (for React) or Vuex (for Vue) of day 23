@@ -1,0 +1,86 @@
+// store.js
+// store.js
+import { createStore } from 'redux'
+
+const initialState = { count: 0 }
+
+function reducer(state = initialState, action) {
+  switch (action.type) {
+    case 'INCREMENT': return { count: state.count + 1 }
+    case 'DECREMENT': return { count: state.count - 1 }
+    default: return state
+  }
+}
+
+const store = createStore(reducer)
+export default store
+// app.js 
+// App.js
+import React from 'react'
+import { Provider, useSelector, useDispatch } from 'react-redux'
+import store from './store'
+
+function Counter() {
+  const count = useSelector(state => state.count)
+  const dispatch = useDispatch()
+
+  return (
+    <div>
+      <h2>Count: {count}</h2>
+      <button onClick={() => dispatch({ type: 'INCREMENT' })}>+</button>
+      <button onClick={() => dispatch({ type: 'DECREMENT' })}>-</button>
+    </div>
+  )
+}
+
+export default function App() {
+  return (
+    <Provider store={store}>
+      <Counter />
+    </Provider>
+  )
+}
+// store/index.js
+// store/index.js
+import { createStore } from 'vuex'
+
+export default createStore({
+  state: { count: 0 },
+  mutations: {
+    increment(state) { state.count++ },
+    decrement(state) { state.count-- }
+  },
+  actions: {
+    increment({ commit }) { commit('increment') },
+    decrement({ commit }) { commit('decrement') }
+  },
+  getters: {
+    getCount: state => state.count
+  }
+})
+// app.vue 
+<!-- App.vue -->
+<template>
+  <div>
+    <h2>Count: {{ count }}</h2>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+  </div>
+</template>
+
+<script setup>
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
+const store = useStore()
+const count = computed(() => store.getters.getCount)
+const increment = () => store.dispatch('increment')
+const decrement = () => store.dispatch('decrement')
+</script>
+// main.js
+// main.js
+import { createApp } from 'vue'
+import App from './App.vue'
+import store from './store'
+
+createApp(App).use(store).mount('#app')
