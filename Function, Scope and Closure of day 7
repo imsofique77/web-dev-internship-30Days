@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Functions and Scope</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin-top: 10px;
+    }
+
+    #count {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Click Counter</h1>
+  <button onclick="increase()">Click Me</button>
+
+  <div id="count">You clicked 0 times</div>
+
+  <script>
+    // Closure example
+    function createCounter() {
+      let count = 0;
+
+      return function() {
+        count++;
+        document.getElementById("count").innerText = "You clicked " + count + " times";
+      };
+    }
+
+    // Global scope
+    let increase = createCounter();
+  </script>
+
+</body>
+</html>
