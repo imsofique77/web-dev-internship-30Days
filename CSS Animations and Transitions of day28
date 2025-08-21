@@ -1,0 +1,67 @@
+1. CSS Transitions
+
+Smoothly animate changes in CSS properties triggered by events like hover or focus.
+
+.button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* property duration timing */
+}
+
+.button:hover {
+  background-color: #2980b9;
+}
+2. CSS Animations
+
+Create complex keyframe animations that run automatically or on trigger.
+
+Example: Bouncing ball animation
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+.ball {
+  width: 40px;
+  height: 40px;
+  background-color: #e74c3c;
+  border-radius: 50%;
+  animation: bounce 2s infinite ease-in-out;
+}
+3. Using Animations & Transitions in React/Vue
+React example:
+function AnimatedButton() {
+  return <button className="button">Hover me!</button>
+}
+Vue example:
+<template>
+  <button class="button">Hover me!</button>
+</template>
+4. Combining Transitions & Animations
+
+Use transitions for simple interactive effects (hover, focus).
+
+Use animations for continuous or complex effects (loading spinners, slides).
+
+5. Pro Tips
+
+Use transform and opacity properties for smooth GPU-accelerated animations.
+
+Avoid animating expensive properties like width, height, top, left if performance matters.
+
+Control animation-play-state with CSS or JavaScript for pause/resume.
+
+📚 Resource
+
+CSS Tricks - Guide to CSS Animations
+
+MDN CSS Transitions
+
+MDN CSS Animations
