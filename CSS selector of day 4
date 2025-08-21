@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Selectors</title>
+  <style>
+    /* Element selector */
+    body {
+      font-family: Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+
+    /* Class selector */
+    .highlight {
+      background-color: #fffae6;
+      border-left: 4px solid #f39c12;
+      padding: 10px;
+      margin-bottom: 15px;
+    }
+
+    /* ID selector */
+    #main-title {
+      text-transform: uppercase;
+      color: #2980b9;
+    }
+
+    /* Descendant selector */
+    .container p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    /* Pseudo-class selector */
+    a:hover {
+      color: #e74c3c;
+      text-decoration: underline;
+    }
+
+    /* Grouped selector */
+    h2, h3 {
+      color: #6c3483;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="main-title">CSS Selectors Demo</h1>
+
+  <div class="highlight">
+    <p>This paragraph is highlighted using a <strong>class selector</strong>.</p>
+  </div>
+
+  <div class="container">
+    <p>This is a paragraph inside a container div. Styled using a <strong>descendant selector</strong>.</p>
+  </div>
+
+  <h2>Another Section</h2>
+  <h3>Subheading</h3>
+
+  <p>Visit the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors" target="_blank">MDN CSS Selectors</a> page to learn more.</p>
+
+</body>
+</html>
