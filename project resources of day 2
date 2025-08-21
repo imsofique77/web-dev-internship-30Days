@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Projects</title>
+</head>
+<body>
+
+  <h1>HTML Projects</h1>
+
+  <ul>
+    <li>
+      <strong><a href="https://html5boilerplate.com/" target="_blank">HTML5 Boilerplate</a></strong> – A professional front-end template for building fast, robust, and adaptable web apps.
+    </li>
+    <li>
+      <strong><a href="https://developers.google.com/web/fundamentals" target="_blank">Google Web Fundamentals</a></strong> – A comprehensive guide to web development, including HTML, CSS, and more.
+    </li>
+  </ul>
+
+</body>
+</html>
