@@ -1,0 +1,48 @@
+// Project Structure Basic
+/my-vue-app
+├── index.html
+├── main.js
+└── App.vue
+// Index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue App</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
+// Main.js
+import { createApp } from 'vue'
+import App from './App.vue'
+
+createApp(App).mount('#app')
+// App.Vue
+<template>
+  <div>
+    <h1>{{ message }}</h1>
+    <button @click="changeMessage">Click Me</button>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const message = ref('Hello from Vue!')
+
+function changeMessage() {
+  message.value = 'You clicked the button!'
+}
+</script>
+
+<style>
+h1 {
+  color: #42b983;
+}
+button {
+  margin-top: 10px;
+}
+</style>
