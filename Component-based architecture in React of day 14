@@ -1,0 +1,47 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+import React from 'react';
+import UserList from './UserList';
+
+function App() {
+  return (
+    <div style={{ fontFamily: 'Arial', padding: '20px' }}>
+      <h1>User Cards</h1>
+      <UserList />
+    </div>
+  );
+}
+
+export default App;
+
+
+import React from 'react';
+import UserCard from './UserCard';
+
+function UserList() {
+  const users = [
+    { name: 'Alice', job: 'Designer' },
+    { name: 'Bob', job: 'Developer' },
+    { name: 'Charlie', job: 'Product Manager' }
+  ];
+
+  return (
+    <div>
+      {users.map((user, index) => (
+        <UserCard key={index} name={user.name} job={user.job} />
+      ))}
+    </div>
+  );
+}
+
+export default UserList;
+
