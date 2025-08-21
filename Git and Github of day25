@@ -1,0 +1,29 @@
+1. Install Git
+
+Download & install from git-scm.com
+
+Verify installation:
+git --version
+
+2. Initialize a Git Repository
+
+In your project folder:
+git init
+
+3. Basic Git Workflow
+
+*Check status:git status
+git status
+
+*Stage files for commit:
+git add <filename>     # stage a specific file
+git add .              # stage all files
+
+*Commit changes:
+git commit -m "Your descriptive message"
+
+*View commit history:
+git log
+
+
+
