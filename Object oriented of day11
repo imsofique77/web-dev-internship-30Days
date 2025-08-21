@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Object-Oriented JavaScript</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+    }
+    #output {
+      margin-top: 20px;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Person Object Example</h1>
+
+  <button onclick="showPerson()">Show Person Info</button>
+
+  <div id="output"></div>
+
+  <script>
+    // Constructor function
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+
+      this.greet = function() {
+        return "Hello, my name is " + this.name + " and I am " + this.age + " years old.";
+      };
+    }
+
+    // Create new object
+    let person1 = new Person("Alice", 25);
+
+    function showPerson() {
+      let output = person1.greet();
+      document.getElementById("output").innerText = output;
+    }
+  </script>
+
+</body>
+</html>
