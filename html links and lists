@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My HTML Page</title>
+</head>
+<body>
+
+  <h1>Welcome to My Web Page</h1>
+
+  <!-- Links -->
+  <h2>Useful Links</h2>
+  <ul>
+    <li><a href="https://www.google.com" target="_blank">Google</a></li>
+    <li><a href="https://www.wikipedia.org" target="_blank">Wikipedia</a></li>
+    <li><a href="https://www.github.com" target="_blank">GitHub</a></li>
+  </ul>
+
+  <!-- Ordered List -->
+  <h2>Steps to Make a Cup of Tea</h2>
+  <ol>
+    <li>Boil water</li>
+    <li>Add tea leaves or tea bag</li>
+    <li>Pour hot water into cup</li>
+    <li>Let it steep</li>
+    <li>Add milk or sugar (optional)</li>
+    <li>Enjoy!</li>
+  </ol>
+
+  <!-- Unordered List -->
+  <h2>My Favorite Fruits</h2>
+  <ul>
+    <li>Apples</li>
+    <li>Bananas</li>
+    <li>Mangoes</li>
+    <li>Grapes</li>
+  </ul>
+
+</body>
+</html>
