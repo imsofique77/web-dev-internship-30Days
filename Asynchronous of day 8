@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Async JS: Callbacks & Promises</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 15px;
+    }
+    #output {
+      margin-top: 20px;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Async JavaScript Demo</h1>
+
+  <button onclick="runCallback()">Run Callback</button>
+  <button onclick="runPromise()">Run Promise</button>
+
+  <div id="output"></div>
+
+  <script>
+    // Callback example
+    function doSomethingAsync(callback) {
+      setTimeout(() => {
+        callback("Callback: Task completed!");
+      }, 1500);
+    }
+
+    function runCallback() {
+      document.getElementById("output").innerText = "Running callback...";
+      doSomethingAsync((message) => {
+        document.getElementById("output").innerText = message;
+      });
+    }
+
+    // Promise example
+    function doSomethingPromise() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve("Promise: Task completed!");
+        }, 1500);
+      });
+    }
+
+    function runPromise() {
+      document.getElementById("output").innerText = "Running promise...";
+      doSomethingPromise().then((message) => {
+        document.getElementById("output").innerText = message;
+      });
+    }
+  </script>
+
+</body>
+</html>
