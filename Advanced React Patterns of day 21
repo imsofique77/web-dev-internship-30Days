@@ -1,0 +1,78 @@
+// Project Structure 
+src/
+├── App.js
+├── MouseTrackerRenderProps.js
+├── withMousePosition.js
+└── DisplayMouse.js
+// Render Props Pattern
+import React, { useState } from 'react'
+
+const MouseTracker = ({ children }) => {
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+
+  const handleMouseMove = e => {
+    setPosition({ x: e.clientX, y: e.clientY })
+  }
+
+  return (
+    <div onMouseMove={handleMouseMove} style={{ height: '100vh' }}>
+      {children(position)}
+    </div>
+  )
+}
+
+export default MouseTracker
+// Higher Order Component 
+import React, { useState, useEffect } from 'react'
+
+const withMousePosition = WrappedComponent => {
+  return props => {
+    const [position, setPosition] = useState({ x: 0, y: 0 })
+
+    useEffect(() => {
+      const handleMouseMove = e => {
+        setPosition({ x: e.clientX, y: e.clientY })
+      }
+
+      window.addEventListener('mousemove', handleMouseMove)
+      return () => window.removeEventListener('mousemove', handleMouseMove)
+    }, [])
+
+    return <WrappedComponent {...props} mouse={position} />
+  }
+}
+
+export default withMousePosition
+// Display Component
+import React from 'react'
+
+const DisplayMouse = ({ mouse }) => (
+  <h2>Mouse Position: {mouse.x}, {mouse.y}</h2>
+)
+
+export default DisplayMouse
+// App Entry
+import React from 'react'
+import MouseTracker from './MouseTrackerRenderProps'
+import withMousePosition from './withMousePosition'
+import DisplayMouse from './DisplayMouse'
+
+const EnhancedMouse = withMousePosition(DisplayMouse)
+
+function App() {
+  return (
+    <div>
+      <h1>Advanced React Patterns</h1>
+
+      <h3>Render Props:</h3>
+      <MouseTracker>
+        {pos => <p>Mouse is at ({pos.x}, {pos.y})</p>}
+      </MouseTracker>
+
+      <h3>Higher-Order Component:</h3>
+      <EnhancedMouse />
+    </div>
+  )
+}
+
+export default App
