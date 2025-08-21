@@ -1,0 +1,107 @@
+import React from 'react'
+
+// Project Card Component
+function ProjectCard({ title, description, link }) {
+  return (
+    <div style={styles.projectCard}>
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <a href={link} target="_blank" rel="noopener noreferrer" style={styles.link}>
+        View Project
+      </a>
+    </div>
+  )
+}
+
+// Project List Component
+function ProjectList() {
+  const projects = [
+    {
+      title: 'React Weather App',
+      description: 'A weather forecasting app built with React and OpenWeather API.',
+      link: 'https://github.com/yourusername/weather-app',
+    },
+    {
+      title: 'Vue Task Manager',
+      description: 'A task management app built with Vue and Vuex.',
+      link: 'https://github.com/yourusername/vue-task-manager',
+    },
+    {
+      title: 'Personal Portfolio',
+      description: 'My personal portfolio website built with React and Styled-components.',
+      link: 'https://yourportfolio.com',
+    },
+  ]
+
+  return (
+    <div style={styles.projectList}>
+      {projects.map((p, i) => (
+        <ProjectCard key={i} {...p} />
+      ))}
+    </div>
+  )
+}
+
+// Main App Component
+export default function App() {
+  return (
+    <div style={styles.container}>
+      <header style={styles.header}>
+        <h1>Your Name</h1>
+        <p>Full-stack Developer | React & Vue Enthusiast</p>
+      </header>
+
+      <section style={styles.section}>
+        <h2>Projects</h2>
+        <ProjectList />
+      </section>
+
+      <footer style={styles.footer}>
+        <p>Contact: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+        <p>
+          GitHub: <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">github.com/yourusername</a>
+        </p>
+      </footer>
+    </div>
+  )
+}
+
+// Simple inline styles
+const styles = {
+  container: {
+    fontFamily: 'Arial, sans-serif',
+    maxWidth: 800,
+    margin: '0 auto',
+    padding: 20,
+    color: '#333',
+  },
+  header: {
+    textAlign: 'center',
+    marginBottom: 40,
+  },
+  section: {
+    marginBottom: 40,
+  },
+  projectList: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr 1fr',
+    gap: 20,
+  },
+  projectCard: {
+    border: '1px solid #ddd',
+    borderRadius: 8,
+    padding: 20,
+    boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
+  },
+  link: {
+    color: '#3498db',
+    textDecoration: 'none',
+  },
+  footer: {
+    textAlign: 'center',
+    borderTop: '1px solid #ddd',
+    paddingTop: 20,
+    fontSize: 14,
+    color: '#666',
+  },
+}
