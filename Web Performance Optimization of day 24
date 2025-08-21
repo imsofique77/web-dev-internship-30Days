@@ -1,0 +1,69 @@
+// React.lazy
+import React, { Suspense } from 'react'
+const HeavyComponent = React.lazy(() => import('./HeavyComponent'))
+
+export default function App() {
+  return (
+    <div>
+      <h1>My App</h1>
+      <Suspense fallback={<div>Loading...</div>}>
+        <HeavyComponent />
+      </Suspense>
+    </div>
+  )
+}
+// Memoize list item
+import React, { memo } from 'react'
+
+const ListItem = memo(({ item }) => {
+  console.log('Rendering', item.id)
+  return <li>{item.text}</li>
+})
+
+export default ListItem
+// virtual long list
+import { FixedSizeList as List } from 'react-window'
+
+function MyList({ items }) {
+  return (
+    <List
+      height={150}
+      itemCount={items.length}
+      itemSize={35}
+      width={300}
+    >
+      {({ index, style }) => (
+        <div style={style}>{items[index].text}</div>
+      )}
+    </List>
+  )
+}
+// lazy load component
+import { defineAsyncComponent } from 'vue'
+
+const HeavyComponent = defineAsyncComponent(() =>
+  import('./HeavyComponent.vue')
+)
+// app.vue
+<template>
+  <HeavyComponent />
+</template>
+// vue
+<template>
+  <virtual-list
+    :items="items"
+    :item-height="50"
+    class="list"
+  >
+    <template #default="{ item }">
+      <div>{{ item.text }}</div>
+    </template>
+  </virtual-list>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import VirtualList from 'vue-virtual-scroller'
+
+const items = ref([...])
+</script>
