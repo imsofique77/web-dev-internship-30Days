@@ -1,0 +1,72 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+
+import { configureStore } from '@reduxjs/toolkit';
+import counterReducer from './counterSlice';
+
+const store = configureStore({
+  reducer: {
+    counter: counterReducer,
+  },
+});
+
+export default store;
+
+
+import { createSlice } from '@reduxjs/toolkit';
+
+const counterSlice = createSlice({
+  name: 'counter',
+  initialState: {
+    value: 0,
+  },
+  reducers: {
+    increment: (state) => {
+      state.value += 1;
+    },
+    decrement: (state) => {
+      state.value -= 1;
+    },
+    reset: (state) => {
+      state.value = 0;
+    },
+  },
+});
+
+export const { increment, decrement, reset } = counterSlice.actions;
+export default counterSlice.reducer;
+
+
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement, reset } from './redux/counterSlice';
+
+function App() {
+  const count = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
+
+  return (
+    <div style={{ fontFamily: 'Arial', padding: '20px', textAlign: 'center' }}>
+      <h1>Redux Counter</h1>
+      <h2>{count}</h2>
+      <div>
+        <button onClick={() => dispatch(increment())}>+</button>
+        <button onClick={() => dispatch(decrement())} style={{ marginLeft: '10px' }}>-</button>
+        <button onClick={() => dispatch(reset())} style={{ marginLeft: '10px' }}>Reset</button>
+      </div>
+    </div>
+  );
+}
+
+export default App;
