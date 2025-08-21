@@ -1,0 +1,88 @@
+1. Prepare Your Project
+
+Make sure your React or Vue project is ready and builds successfully:
+
+# React (Create React App)
+npm run build
+
+# Vue (Vue CLI or Vite)
+npm run build
+2. Deploy with Netlify
+Step-by-step:
+
+Go to netlify.com
+ and sign up or log in.
+
+Click New site from Git.
+
+Connect your GitHub/GitLab/Bitbucket repository.
+
+Configure the build settings:
+
+Build command:
+
+React: npm run build
+
+Vue: npm run build
+
+Publish directory:
+
+React: build
+
+Vue: dist
+
+Click Deploy Site.
+
+Once deployed, Netlify provides a URL like https://your-site.netlify.app.
+
+3. Deploy with Vercel
+Step-by-step:
+
+Go to vercel.com
+ and sign up or log in.
+
+Click New Project and import your Git repository.
+
+Vercel automatically detects React or Vue.
+
+Confirm build settings:
+
+Build command:
+
+React: npm run build
+
+Vue: npm run build
+
+Output directory:
+
+React: build
+
+Vue: dist
+
+Click Deploy.
+
+Vercel provides a URL like https://your-project.vercel.app.
+
+4. Manual Deploy (ZIP Upload on Netlify)
+
+Zip your build folder (build or dist).
+
+In Netlify, click Deploy site > Deploy manually and upload the zip.
+
+5. Continuous Deployment
+
+Both platforms auto-deploy when you push commits to your Git repo — automatic CI/CD!
+
+6. Bonus Tips
+
+Add a netlify.toml or vercel.json file for custom configurations.
+
+Set environment variables securely in their dashboards.
+
+Use custom domains with SSL (free!).
+
+📚 Resources
+
+Netlify Docs
+
+Vercel Docs
