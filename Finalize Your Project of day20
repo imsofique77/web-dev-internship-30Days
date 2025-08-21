@@ -1,0 +1,121 @@
+// index.js
+export default createStore({
+  state: {
+    tasks: JSON.parse(localStorage.getItem('tasks')) || []
+  },
+  mutations: {
+    addTask(state, task) {
+      state.tasks.push(task)
+      localStorage.setItem('tasks', JSON.stringify(state.tasks))
+    },
+    toggleTask(state, id) {
+      const task = state.tasks.find(t => t.id === id)
+      if (task) task.done = !task.done
+      localStorage.setItem('tasks', JSON.stringify(state.tasks))
+    },
+    deleteTask(state, id) {
+      state.tasks = state.tasks.filter(t => t.id !== id)
+      localStorage.setItem('tasks', JSON.stringify(state.tasks))
+    }
+  },
+  actions: {
+    addTask({ commit }, task) {
+      commit('addTask', task)
+    },
+    toggleTask({ commit }, id) {
+      commit('toggleTask', id)
+    },
+    deleteTask({ commit }, id) {
+      commit('deleteTask', id)
+    }
+  },
+  getters: {
+    allTasks: state => state.tasks,
+    completedTasks: state => state.tasks.filter(t => t.done),
+    pendingTasks: state => state.tasks.filter(t => !t.done)
+  }
+})
+// Create Views
+<template>
+  <div>
+    <h2>Task List</h2>
+    <input v-model="newTask" @keyup.enter="addNewTask" placeholder="New task..." />
+    <ul>
+      <li v-for="task in tasks" :key="task.id">
+        <label>
+          <input type="checkbox" :checked="task.done" @change="toggle(task.id)" />
+          <span :style="{ textDecoration: task.done ? 'line-through' : 'none' }">
+            {{ task.text }}
+          </span>
+        </label>
+        <button @click="remove(task.id)">🗑️</button>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+import { useStore } from 'vuex'
+
+const store = useStore()
+const newTask = ref('')
+
+const tasks = computed(() => store.getters.allTasks)
+const addNewTask = () => {
+  if (!newTask.value.trim()) return
+  store.dispatch('addTask', { id: Date.now(), text: newTask.value, done: false })
+  newTask.value = ''
+}
+const toggle = (id) => store.dispatch('toggleTask', id)
+const remove = (id) => store.dispatch('deleteTask', id)
+</script>
+// Update Routes 
+import { createRouter, createWebHistory } from 'vue-router'
+import Tasks from '../views/Tasks.vue'
+import About from '../views/About.vue'
+
+export default createRouter({
+  history: createWebHistory(),
+  routes: [
+    { path: '/', component: Tasks },
+    { path: '/about', component: About }
+  ]
+})
+// Finilize UI 
+<template>
+  <div>
+    <nav>
+      <router-link to="/">Tasks</router-link> |
+      <router-link to="/about">About</router-link>
+    </nav>
+    <router-view />
+  </div>
+</template>
+
+<style>
+body {
+  font-family: sans-serif;
+  margin: 20px;
+}
+nav a {
+  margin-right: 10px;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
+</style>
