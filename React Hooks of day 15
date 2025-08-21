@@ -1,0 +1,39 @@
+index.js 
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+
+App.js 
+
+import React, { useState } from 'react';
+
+function App() {
+  // useState hook to store number of likes
+  const [likes, setLikes] = useState(0);
+
+  // function to handle button click
+  function handleLike() {
+    setLikes(likes + 1);
+  }
+
+  return (
+    <div style={{ fontFamily: 'Arial', padding: '20px' }}>
+      <h1>Like Button</h1>
+      <p>You have liked this {likes} time{likes !== 1 ? 's' : ''}.</p>
+      <button onClick={handleLike} style={{ padding: '10px 15px' }}>
+        Like 👍
+      </button>
+    </div>
+  );
+}
+
+export default App;
