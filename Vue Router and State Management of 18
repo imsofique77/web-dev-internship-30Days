@@ -1,0 +1,101 @@
+// Project Setup 
+npm create vite@latest my-vue-app -- --template vue
+cd my-vue-app
+npm install
+npm install vue-router@4 vuex@4
+// Project Structure 
+/src
+├── main.js
+├── App.vue
+├── router/
+│   └── index.js
+├── store/
+│   └── index.js
+├── views/
+│   ├── Home.vue
+│   └── About.vue
+
+// Project Router Set Up 
+import { createRouter, createWebHistory } from 'vue-router'
+import Home from '../views/Home.vue'
+import About from '../views/About.vue'
+
+const routes = [
+  { path: '/', name: 'Home', component: Home },
+  { path: '/about', name: 'About', component: About },
+]
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
+
+export default router
+// Vuex Store Set Up 
+import { createStore } from 'vuex'
+
+export default createStore({
+  state: {
+    count: 0,
+  },
+  mutations: {
+    increment(state) {
+      state.count++
+    },
+  },
+  actions: {
+    increment({ commit }) {
+      commit('increment')
+    },
+  },
+  getters: {
+    getCount: state => state.count,
+  }
+})
+// Main Entry 
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+import store from './store'
+
+createApp(App).use(router).use(store).mount('#app')
+// App Component 
+<template>
+  <div>
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </nav>
+    <router-view />
+  </div>
+</template>
+
+<style>
+nav {
+  margin-bottom: 20px;
+}
+</style>
+// Home View 
+<template>
+  <div>
+    <h2>Home Page</h2>
+    <p>Count: {{ count }}</p>
+    <button @click="increment">Increment</button>
+  </div>
+</template>
+
+<script setup>
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
+const store = useStore()
+const count = computed(() => store.getters.getCount)
+const increment = () => store.dispatch('increment')
+</script>
+// About View 
+<template>
+  <div>
+    <h2>About Page</h2>
+    <p>This is a demo of Vue Router and Vuex integration.</p>
+  </div>
+</template>
